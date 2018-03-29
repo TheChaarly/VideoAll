@@ -20,7 +20,8 @@ and open the template in the editor.
                         <div class="col-md-12">
                             <p:outputLabel for="titanime" value="Titulos de las animes:" />
                             <p:selectOneMenu id="titanime" required="true" >
-                                <f:selectItem value="Seleccione un titulo" />
+                                <f:selectItem itemValue="0" itemLabel="Seleccione un titulo" />
+                                <f:selectItems value="#{capAnimeBean.listselectitem}" />
                             </p:selectOneMenu>
                             <p:message for="titanime" />
                         </div>

@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Aplicativos/Personales/VideoAll/CharlyVideo/src/java/video/beans/GnAnimeBean.java</file>
+            <file>file:/C:/Aplicativos/Personales/VideoAll/CharlyVideo/src/java/video/dao/imp/AnimeDAOImp.java</file>
+            <file>file:/C:/Aplicativos/Personales/VideoAll/CharlyVideo/src/java/video/dao/imp/EstadoDAOImp.java</file>
+            <file>file:/C:/Aplicativos/Personales/VideoAll/CharlyVideo/web/pages/AnimeForm.xhtml</file>
+            <file>file:/C:/Aplicativos/Personales/VideoAll/CharlyVideo/web/pages/NewGeneroA.xhtml</file>
+            <file>file:/C:/Aplicativos/Personales/VideoAll/CharlyVideo/src/java/video/beans/CapAnimeBean.java</file>
+        </group>
     </open-files>
 </project-private>
