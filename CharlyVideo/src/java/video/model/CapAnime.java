@@ -28,15 +28,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "CapAnime.FindAll", query = "SELECT ca FROM CapAnime ca" ),
     @NamedQuery(name = "Estado.FindByidCap", query = "SELECT ca FROM CapAnime ca WHERE ca.idCap = :idCap" ),
-    @NamedQuery(name = "Estado.FindByidAnime", query = "SELECT ca FROM CapAnime ca WHERE ca.idAnime = :idAnime" ),
+    @NamedQuery(name = "Estado.FindByidTemporada", query = "SELECT ca FROM CapAnime ca WHERE ca.idTemporada = :idTemporada" ),
     @NamedQuery(name = "Estado.FindByNCap", query = "SELECT ca FROM CapAnime ca WHERE ca.NCap = :NCap" ),
     @NamedQuery(name = "Estado.FindByTitcap", query = "SELECT ca FROM CapAnime ca WHERE ca.Titcap = :Titcap" ),
     @NamedQuery(name = "Estado.FindByDesc", query = "SELECT ca FROM CapAnime ca WHERE ca.Desc = :Desc" ),
     @NamedQuery(name = "Estado.FindByDura", query = "SELECT ca FROM CapAnime ca WHERE ca.Dura = :Dura" ),
+    @NamedQuery(name = "Estado.FindByfechExt", query = "SELECT ca FROM CapAnime ca WHERE ca.fechExt = :fechExt" ),
     @NamedQuery(name = "Estado.FindByfech", query = "SELECT ca FROM CapAnime ca WHERE ca.fech = :fech" ),
-    @NamedQuery(name = "Estado.FindByruta", query = "SELECT ca FROM CapAnime ca WHERE ca.ruta = :ruta" ),
-    @NamedQuery(name = "Estado.FindByNumTemp", query = "SELECT ca FROM CapAnime ca WHERE ca.NumTemp = :NumTemp" ),
-    @NamedQuery(name = "Estado.FindByNomTemp", query = "SELECT ca FROM CapAnime ca WHERE ca.NomTemp = :NomTemp" ),
+    @NamedQuery(name = "Estado.FindByruta", query = "SELECT ca FROM CapAnime ca WHERE ca.ruta = :ruta" )
     
 })
 public class CapAnime implements Serializable{
@@ -47,8 +46,8 @@ public class CapAnime implements Serializable{
     @Basic(optional = false)
     @Column(name = "id_capanime")    
     private Integer idCap;
-    @Column(name = "id_anime")    
-    private Integer idAnime;
+    @Column(name = "id_temp")    
+    private Integer idTemporada;
     @Column(name = "num_cap")    
     private Integer NCap;
     @Column(name = "titulo")    
@@ -58,13 +57,19 @@ public class CapAnime implements Serializable{
     @Column(name = "Duracion")    
     private Integer Dura;
     @Column(name = "fecha_extre")    
+    private Date fechExt;
+    @Column(name = "fecha")    
     private Date fech;
     @Column(name = "Ruta")    
     private String ruta;
-    @Column(name = "Temporada")    
-    private Integer NumTemp;
-    @Column(name = "Nom_Temporada")    
-    private String NomTemp;
+
+    public Date getFechExt() {
+        return fechExt;
+    }
+
+    public void setFechExt(Date fechExt) {
+        this.fechExt = fechExt;
+    }
 
     public Integer getIdCap() {
         return idCap;
@@ -74,12 +79,12 @@ public class CapAnime implements Serializable{
         this.idCap = idCap;
     }
 
-    public Integer getIdAnime() {
-        return idAnime;
+    public Integer getIdTemporada() {
+        return idTemporada;
     }
 
-    public void setIdAnime(Integer idAnime) {
-        this.idAnime = idAnime;
+    public void setIdTemporada(Integer idTemporada) {
+        this.idTemporada = idTemporada;
     }
 
     public Integer getNCap() {
@@ -128,22 +133,6 @@ public class CapAnime implements Serializable{
 
     public void setRuta(String ruta) {
         this.ruta = ruta;
-    }
-
-    public Integer getNumTemp() {
-        return NumTemp;
-    }
-
-    public void setNumTemp(Integer NumTemp) {
-        this.NumTemp = NumTemp;
-    }
-
-    public String getNomTemp() {
-        return NomTemp;
-    }
-
-    public void setNomTemp(String NomTemp) {
-        this.NomTemp = NomTemp;
     }
     
     public int hashCode(){

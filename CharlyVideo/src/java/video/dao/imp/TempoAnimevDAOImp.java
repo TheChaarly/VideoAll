@@ -11,42 +11,42 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
-import video.dao.AnimeDAO;
-import video.dto.AnimeDTO;
-import video.dto.CapAnimeDTO;
+import video.dto.TempoAnimeDTO;
+import video.model.TempoAnime;
 import video.util.HibernateUtil;
 
 /**
  *
  * @author TheChaarly
  */
-public class AnimeDAOImp implements AnimeDAO{
+public class TempoAnimevDAOImp {
 
-    public List<AnimeDTO> getlisttitanimes() {
-        System.out.println("Ingresa here");
-        List<AnimeDTO> list = null;
+    public List<TempoAnimeDTO> getlistTempoAnime(Integer idanime2) {
+        List<TempoAnimeDTO> list = null;
         ResultSet rs;
-        Connection connexion;
+        Connection conexion;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        connexion = session.connection();
+        conexion = session.connection();
         try {
-            String query = "Select * from animes";
-            Statement s = connexion.createStatement();
+            String query = " SELECT id_tem, NombreTemp FROM animes a INNER JOIN tempoanime t ON a.id_anime = t.id_anime WHERE a.id_anime = " + idanime2;
+            System.out.println("query " + query.toString());
+            Statement s = conexion.createStatement();
             rs = s.executeQuery(query);
-            AnimeDTO cap = null;
+            TempoAnimeDTO tempoanime = null;
             list = new ArrayList();
             while(rs.next()){
-                cap = new AnimeDTO();
-                cap.setIdanime(rs.getInt(1));
-                cap.setTitOrig(rs.getString(2));
-                list.add(cap);
+                tempoanime = new TempoAnimeDTO();
+                tempoanime.setIdTemporada(rs.getInt(1));
+                tempoanime.setNombreTemporada(rs.getString(2));
+                list.add(tempoanime);
             }
         } catch (Exception e) {
             System.out.println("Error " + e);
         }finally{
             session.close();
-        }        
+        }
         return list;
     }
-    
+
+
 }

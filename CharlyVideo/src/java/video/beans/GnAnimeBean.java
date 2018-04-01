@@ -52,16 +52,10 @@ public class GnAnimeBean {
     
     private String tituloorg;
     private String titulosec;
-    private String Idioma;
-    private String Subtitul;
     private String Descrip;
-    private String Estatus;
-    private String Cclasif;
     private Integer Gene1;
     private Integer Gene2;
     private Integer Gene3;
-    private Integer CapIn;
-    private Integer CapFin;
     private Integer EstadoAn;
     private Date fechini;
     private Date fechfin;
@@ -79,16 +73,10 @@ public class GnAnimeBean {
         filefoto = null;
         tituloorg = "";
         titulosec = "";
-        Idioma = "";
-        Subtitul = "";
         Descrip = "";
-        Estatus = null;
-        Cclasif = "";
         Gene1 = 0;
         Gene2 = 0;
         Gene3 = 0;
-        CapIn = 0;
-        CapFin = 0;
         EstadoAn = 0;
         fechini = null;
         fechfin = null;
@@ -98,42 +86,26 @@ public class GnAnimeBean {
         System.out.println("Ingresa en RgAnime " + filefoto.getFileName());
         System.out.println("1.- " + tituloorg);
         System.out.println("2.- " + titulosec);
-        System.out.println("3.- " + Idioma);
-        System.out.println("4.- " + Subtitul);
         System.out.println("5.- " + Descrip);
-        System.out.println("6.- " + Estatus);
-        System.out.println("7.- " + Cclasif);
         System.out.println("8.- " + Gene1);
         System.out.println("9.- " + Gene2);
         System.out.println("10.- " + Gene3);
-        System.out.println("11.- " + CapIn);
-        System.out.println("12.- " + CapFin);
         System.out.println("13.- " + EstadoAn);
         System.out.println("14.- " + fechini);
-        System.out.println("15.- " + fechfin);
         
         try {
-            byte[] img = IOUtils.toByteArray(filefoto.getInputstream());
-            
-            Session session = null;
-            
+            byte[] img = IOUtils.toByteArray(filefoto.getInputstream());            
+            Session session = null;            
             session = HibernateUtil.getSessionFactory().openSession();
-            
+            animes = new Animes();
             animes.setTitOriginal(tituloorg);
             animes.setTitSecund(titulosec);
-            animes.setIdio(Idioma);
-            animes.setSub(Subtitul);
             animes.setDescripcionA(Descrip);
-            animes.setEstatu(Estatus);
-            animes.setClasifica(Cclasif);
             animes.setGen1(Gene1);
             animes.setGen2(Gene2);
             animes.setGen3(Gene2);
-            animes.setCapAct(CapIn);
-            animes.setCapfin(CapFin);
             animes.setEstad(EstadoAn);
             animes.setFechalanza(fechini);
-            animes.setFechafinal(fechfin);
             animes.setPost(img);
             
             session.save(animes);
@@ -280,44 +252,12 @@ public class GnAnimeBean {
         this.titulosec = titulosec;
     }
 
-    public String getIdioma() {
-        return Idioma;
-    }
-
-    public void setIdioma(String Idioma) {
-        this.Idioma = Idioma;
-    }
-
-    public String getSubtitul() {
-        return Subtitul;
-    }
-
-    public void setSubtitul(String Subtitul) {
-        this.Subtitul = Subtitul;
-    }
-
     public String getDescrip() {
         return Descrip;
     }
 
     public void setDescrip(String Descrip) {
         this.Descrip = Descrip;
-    }
-
-    public String getEstatus() {
-        return Estatus;
-    }
-
-    public void setEstatus(String Estatus) {
-        this.Estatus = Estatus;
-    }
-
-    public String getCclasif() {
-        return Cclasif;
-    }
-
-    public void setCclasif(String Cclasif) {
-        this.Cclasif = Cclasif;
     }
 
     public Integer getGene1() {
@@ -342,22 +282,6 @@ public class GnAnimeBean {
 
     public void setGene3(Integer Gene3) {
         this.Gene3 = Gene3;
-    }
-
-    public Integer getCapIn() {
-        return CapIn;
-    }
-
-    public void setCapIn(Integer CapIn) {
-        this.CapIn = CapIn;
-    }
-
-    public Integer getCapFin() {
-        return CapFin;
-    }
-
-    public void setCapFin(Integer CapFin) {
-        this.CapFin = CapFin;
     }
 
     public Integer getEstadoAn() {

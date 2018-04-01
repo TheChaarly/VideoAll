@@ -15,7 +15,7 @@ and open the template in the editor.
         
     <h:body>
         
-        <div id="header" style="margin-top: 40px;">
+        <div id="header" style="margin-top: 40px; ">
             <div class="container">
                 <h:form> 
 
@@ -23,9 +23,9 @@ and open the template in the editor.
                         <div class="row">
                             <div class="col-sm-3 col-md-3">
                         <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <img src="data:image/png;base64,#{loginusuario.fotico}" style="height: 200px; width: 100%;" />
-                                <p:outputLabel for="alias" value="Usuario: " />
+                            <div class="col-md-12 col-sm-12" style="text-align: center;">
+                                <img src="data:image/png;base64,#{loginusuario.fotico}" class="img-circle" style="height: 150px; width: 60%;" />
+                                <br />
                                 <p:outputLabel id="alias" value="#{loginusuario.alias}" />
                                 <br />
                                 <p:link href="Login.xhtml" value="Cerrar Sesion" >

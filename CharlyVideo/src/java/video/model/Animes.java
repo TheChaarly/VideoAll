@@ -35,15 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Animes.FindByGen2", query = "SELECT an FROM Animes an WHERE an.Gen2 = :Gen2" ),
     @NamedQuery(name = "Animes.FindByGen3", query = "SELECT an FROM Animes an WHERE an.Gen3 = :Gen3" ),
     @NamedQuery(name = "Animes.FindByfechalanza", query = "SELECT an FROM Animes an WHERE an.fechalanza = :fechalanza" ),
-    @NamedQuery(name = "Animes.FindByfechafinal", query = "SELECT an FROM Animes an WHERE an.fechafinal = :fechafinal" ),
     @NamedQuery(name = "Animes.FindBypost", query = "SELECT an FROM Animes an WHERE an.post = :post" ),
-    @NamedQuery(name = "Animes.FindByestatu", query = "SELECT an FROM Animes an WHERE an.estatu = :estatu" ),
-    @NamedQuery(name = "Animes.FindByclasifica", query = "SELECT an FROM Animes an WHERE an.clasifica = :clasifica" ),
     @NamedQuery(name = "Animes.FindByEstad", query = "SELECT an FROM Animes an WHERE an.Estad = :Estad" ),
-    @NamedQuery(name = "Animes.FindByIdio", query = "SELECT an FROM Animes an WHERE an.Idio = :Idio" ),
-    @NamedQuery(name = "Animes.FindBySub", query = "SELECT an FROM Animes an WHERE an.Sub = :Sub" ),
-    @NamedQuery(name = "Animes.FindByCapAct", query = "SELECT an FROM Animes an WHERE an.CapAct = :CapAct" ),
-    @NamedQuery(name = "Animes.FindByCapfin", query = "SELECT an FROM Animes an WHERE an.Capfin = :Capfin" )
 })
 public class Animes implements Serializable{
     
@@ -66,26 +59,12 @@ public class Animes implements Serializable{
     private Integer Gen2;
     @Column(name = "Genero_three")
     private Integer Gen3;
-    @Column(name = "Fecha_lanza")
+    @Column(name = "fecha")
     private Date fechalanza;
-    @Column(name = "Fecha_Fin")
-    private Date fechafinal;
-    @Column(name = "Poster")
+    @Column(name = "ImgGeneral")
     private byte[] post;
-    @Column(name = "Estatus")
-    private String estatu;
-    @Column(name = "Clasificacion")
-    private String clasifica;
     @Column(name = "Estado")
     private Integer Estad;
-    @Column(name = "Idioma")
-    private String Idio;
-    @Column(name = "Subtitulos")
-    private String Sub;
-    @Column(name = "Cap_actual")
-    private Integer CapAct;
-    @Column(name = "Cap_fin")
-    private Integer Capfin;
 
     public Integer getIdAnime() {
         return idAnime;
@@ -151,68 +130,12 @@ public class Animes implements Serializable{
         this.fechalanza = fechalanza;
     }
 
-    public Date getFechafinal() {
-        return fechafinal;
-    }
-
-    public void setFechafinal(Date fechafinal) {
-        this.fechafinal = fechafinal;
-    }
-    
-    public String getEstatu() {
-        return estatu;
-    }
-
-    public void setEstatu(String estatu) {
-        this.estatu = estatu;
-    }
-
-    public String getClasifica() {
-        return clasifica;
-    }
-
-    public void setClasifica(String clasifica) {
-        this.clasifica = clasifica;
-    }
-
     public Integer getEstad() {
         return Estad;
     }
 
     public void setEstad(Integer Estad) {
         this.Estad = Estad;
-    }
-
-    public String getIdio() {
-        return Idio;
-    }
-
-    public void setIdio(String Idio) {
-        this.Idio = Idio;
-    }
-
-    public String getSub() {
-        return Sub;
-    }
-
-    public void setSub(String Sub) {
-        this.Sub = Sub;
-    }
-
-    public Integer getCapAct() {
-        return CapAct;
-    }
-
-    public void setCapAct(Integer CapAct) {
-        this.CapAct = CapAct;
-    }
-
-    public Integer getCapfin() {
-        return Capfin;
-    }
-
-    public void setCapfin(Integer Capfin) {
-        this.Capfin = Capfin;
     }
 
     public byte[] getPost() {

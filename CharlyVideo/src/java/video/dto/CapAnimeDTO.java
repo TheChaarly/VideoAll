@@ -19,6 +19,7 @@ public class CapAnimeDTO {
     private String titulo;
     private String descripcion;
     private Integer duracion;
+    private Date fechaEx;
     private Date fecha;
     private String ruta;
     private Integer numTemporada;

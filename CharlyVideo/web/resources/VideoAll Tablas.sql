@@ -41,33 +41,43 @@ create table Animes (
     Genero_one int,
     Genero_two int,
     Genero_three int,
-    Fecha_lanza date,
-    Fecha_Fin date,
-    Poster Longblob,
-    Estatus enum ("Finalizado", "Emision", "Estreno"),
-    Clasificacion enum ("A", "B", "B15","C"),        
-    Estado boolean ,    
-    Idioma varchar(50),
-    Subtitulos varchar(50),
-    Cap_actual int(4),
-    Cap_fin int(4), 
+    Estado boolean ,
+	ImgGeneral longblob,
+	fecha date ,
     foreign key (genero_one) references generoanime(id_generoA),
     foreign key (genero_two) references generoanime(id_generoA),
     foreign key (genero_three) references generoanime(id_generoA))
      engine=innodb;
-GO
+
+create table tempoAnime(
+	id_tem int primary key auto_increment, 
+	id_anime int,
+	NombreTemp varchar(100), 
+	NumTemp int,
+	Fecha_lanza date,
+    Fecha_Fin date,
+    Poster Longblob,
+    Estatus enum ("Finalizado", "Emision", "Estreno"),
+    Clasificacion enum ("A", "B", "B15","C"),  
+	Idioma varchar(50),
+    Subtitulos varchar(50),
+    Cap_actual int(4),
+    Cap_fin int(4),
+	fecha date,
+	foreign key (id_anime) references Animes(id_anime))
+	engine = innodb;
+
 create table Cap_Anime (
         id_capanime int primary key auto_increment, 
-        id_anime int,
+        id_temp int,
         num_cap int,
         titulo varchar(50),        
         Descripcion text,
         Duracion int(3),
         fecha_extre date,
+		fecha date,
         Ruta varchar(100),
-        Temporada int,
-        Nom_Temporada varchar(100),
-        foreign key (id_anime) references Animes(id_anime))
+        foreign key (id_temp) references tempoAnime(id_tem))
         engine=innodb;
 GO
 create table GeneroSeries (

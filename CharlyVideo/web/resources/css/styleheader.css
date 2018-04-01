@@ -12,7 +12,10 @@ root {
 
 body {
   padding: 0px 80px;
-  background: #eee url(https://subtlepatterns.com/patterns/extra_clean_paper.png);
+  /*background: #eee url(https://subtlepatterns.com/patterns/extra_clean_paper.png);*/
+  /*background: #eee url(https://www.toptal.com/designers/subtlepatterns/patterns/darkness.png);*/
+  background: #eee url(https://static.zerochan.net/Trafalgar.Law.full.1585183.jpg);
+  /*background: #eee url(https://static.zerochan.net/Portgas.D..Ace.full.506166.jpg);*/
 }
 #logo {
   font-family: 'Open Sans', sans-serif;

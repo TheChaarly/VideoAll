@@ -18,5 +18,6 @@
     <mapping class="video.model.Estado"/>
     <mapping class="video.model.GnAnime"/>
     <mapping class="video.model.Animes"/>
+    <mapping class="video.model.TempoAnime"/>
   </session-factory>
 </hibernate-configuration>

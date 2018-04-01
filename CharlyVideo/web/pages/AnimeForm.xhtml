@@ -13,31 +13,205 @@ and open the template in the editor.
     
     <ui:define name="content">
         <link href="../resources/css/styleAnimeRg.css" rel="stylesheet" type="text/css"/>
-        <div id="rgcapanime">            
-            <h:form>
-                <p:fieldset legend="Registra capitulo de anime"  >
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p:outputLabel for="titanime" value="Titulos de las animes:" />
-                            <p:selectOneMenu id="titanime" required="true" >
-                                <f:selectItem itemValue="0" itemLabel="Seleccione un titulo" />
-                                <f:selectItems value="#{capAnimeBean.listselectitem}" />
-                            </p:selectOneMenu>
-                            <p:message for="titanime" />
-                        </div>
-                        <div class="row">
-                            <div>
-                                
+        <div id="rgcapanime" style="margin-top: 50px;">            
+            <h:form enctype="multipart/form-data" >
+                <div class="row">
+                    <div class="col-md-11 col-md-offset-1">
+
+                        <p:fieldset legend="Registra capitulo de anime" toggleable="true" toggleSpeed="380"  >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:outputLabel for="titanime" value="Titulos de las animes:" />
+                                    <p:selectOneMenu id="titanime" value="#{capAnimeBean.idanime}" required="true" >
+                                        <f:selectItem itemValue="0" itemLabel="Seleccione un titulo" />
+                                        <f:selectItems value="#{capAnimeBean.listselectitem}" />
+                                    </p:selectOneMenu>
+                                    <p:message for="titanime" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p:commandButton value="Agregar Capitulo" />
+                            <br />
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p:outputLabel for="nomtem" value="Nombre de la temporada:" />
+                                    <p:inputText id="nomtem" required="true" value="#{capAnimeBean.nombreTemporada}" />
+                                    <p:message for="nomtem" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Numero de Temporada" for="numtem" />
+                                    <p:spinner id="numtem" value="#{capAnimeBean.numTemporada}" />
+                                    <p:message for="numtem" />
+                                </div>                                
                             </div>
-                        </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Estatus" for="estatus"  />
+                                    <p:selectOneMenu id="estatus" value="#{capAnimeBean.estatus}" >
+                                        <f:selectItem itemValue="0" itemLabel="Seleccione una opción" />
+                                        <f:selectItem itemValue="Finalizado" itemLabel="Finalizado" />
+                                        <f:selectItem itemValue="Emision" itemLabel="Emision" />
+                                        <f:selectItem itemValue="Estreno" itemLabel="Estreno" />
+                                    </p:selectOneMenu>
+                                    <p:message for="estatus" />
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Clasificacion" for="clasificacion" />
+                                    <p:selectOneMenu id="clasificacion" value="#{capAnimeBean.clasificaciion}" >
+                                        <f:selectItem itemValue="0" itemLabel="Seleccione una opción" />
+                                        <f:selectItem itemValue="A" itemLabel="A" />
+                                        <f:selectItem itemValue="B" itemLabel="B" />
+                                        <f:selectItem itemValue="B15" itemLabel="B15" />
+                                        <f:selectItem itemValue="C" itemLabel="C" />
+                                    </p:selectOneMenu>
+                                    <p:message for="clasificacion" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p:outputLabel for="feclan" value="Fecha de estreno:" />
+                                    <p:calendar id="feclan" locale="de" navigator="true" value="#{capAnimeBean.fechaLanzamiento}"  />
+                                    <p:message for="feclan" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel for="fecfin" value="Fecha de final:" />
+                                    <p:calendar id="fecfin" locale="de" navigator="true"  value="#{capAnimeBean.fechaFin}" />
+                                    <p:message for="fecfin" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel for="capact" value="Capitulo Actual:" />
+                                    <p:spinner id="capact" min="0" max="1000" value="#{capAnimeBean.capActual}" />
+                                    <p:message for="capact" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel for="capfin" value="Capitulo Final:"  />
+                                    <p:spinner id="capfin" min="0" max="1000" value="#{capAnimeBean.capFinal}" />
+                                    <p:message for="capfin" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel for="idioma" value="Idioma" />
+                                    <p:selectOneMenu id="idioma" required="true" value="#{capAnimeBean.idioma}" >
+                                        <f:selectItem itemValue="0" itemLabel="Seleccione una opción" />
+                                        <f:selectItem itemValue="Español" itemLabel="Español" />
+                                        <f:selectItem itemValue="Ingles" itemLabel="Ingles" />
+                                        <f:selectItem itemValue="Japones" itemLabel="Japones" />
+                                    </p:selectOneMenu>
+                                    <p:message for="idioma" />
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel for="Subtitulos" value="Subtitulos" />
+                                    <p:selectOneMenu id="Subtitulos" required="true" value="#{capAnimeBean.subtitulo}" >
+                                        <f:selectItem itemValue="0" itemLabel="Seleccione una opción" />
+                                        <f:selectItem itemValue="Español" itemLabel="Español" />
+                                        <f:selectItem itemValue="Ingles" itemLabel="Ingles" />
+                                        <f:selectItem itemValue="Japones" itemLabel="Japones" />
+                                        <f:selectItem itemValue="Ninguno" itemLabel="Ninguno" />
+                                    </p:selectOneMenu>
+                                    <p:message for="Subtitulos" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel for="posterT" value="Imagen del anime:" />
+                                    <p:fileUpload id="posterT" required="true" value="#{capAnimeBean.poster}" class="btn btn-info" 
+                                                  mode="simple" sizeLimit="1000000"  allowTypes="/(\.|\/)(gif|jpg|jpeg|png)$/" />
+                                    <p:message for="posterT" />                
+                                </div>
+                                <div class="col-md-6">
+                                    <!--<input type="file" value="#{capAnimeBean.filpoto}" />-->
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:commandButton value="Agregar Capitulo" actionListener="#{capAnimeBean.regTempoAnime}" ajax="false"  />
+                                </div>
+                            </div>
+                        </p:fieldset>
                     </div>
-                </p:fieldset>
+                </div>
             </h:form>
+            <br/>
+            <br/>
+            <h:form>
+                <div class="row">
+                    <div class="col-md-11 col-md-offset-1">
+                        <p:fieldset legend="Registrar Capitulo de Anime" toggleable="true" toggleSpeed="380" >
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel for="TAnime" value="Titulos de las animes:" />
+                                    <p:selectOneMenu id="TAnime" value="#{capAnimeBean.idanime2}" required="true" >
+                                        <p:ajax update="TempoA" listener="#{capAnimeBean.getlisttempo}" />
+                                        <f:selectItem itemValue="0" itemLabel="Seleccione un titulo" />
+                                        <f:selectItems value="#{capAnimeBean.listselectitem2}" />
+                                    </p:selectOneMenu>
+                                    <p:message for="TAnime" />
+                                </div>
+                                <div class="col-md-6">
+                                    <p:outputLabel for="TempoA" value="Titulos de la temporada:" />
+                                    <p:selectOneMenu id="TempoA" value="#{capAnimeBean.idtemp}" required="true" >
+                                        <f:selectItem itemValue="0" itemLabel="Seleccione un titulo" />
+                                        <f:selectItems value="#{capAnimeBean.listselectitem3}" />
+                                    </p:selectOneMenu>
+                                    <p:message for="TempoA" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel for="titCap" value="Titulo del Capitulo:" />
+                                    <p:inputText id="titCap" />
+                                    <p:message for="titCap" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel for="numcap" value="Numero de Capitulo: " />
+                                    <p:spinner id="numcap" />
+                                    <p:message for="numcap" />
+                                </div>
+                                <div class="col-md-3">
+                                    <p:outputLabel for="dura" value="Duración:" />
+                                    <p:spinner id="dura" />
+                                    <p:message for="dura" />                                    
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p:outputLabel value="Ruta:" />
+                                    <p:fileUpload required="true" id="ruta" />
+                                    <p:message for="ruta" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel for="fechaEs" value="Fecha de estreno:" />
+                                    <p:calendar id="fechaEs" />
+                                    <p:message for="fechaEs" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p:outputLabel value="Descripción:" for="inpDesc" />
+                                    <p:inputTextarea id="inpDesc" />
+                                    <p:message for="inpDesc" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:commandButton value="Agregar Capitulo" />
+                                </div>
+                            </div>
+                        </p:fieldset>
+                    </div>
+                </div>
+            </h:form>
+            <br />
+            <br />
+            
         </div>
     </ui:define>
 </ui:composition>
