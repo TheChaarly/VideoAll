@@ -137,7 +137,7 @@ and open the template in the editor.
             </h:form>
             <br/>
             <br/>
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-11 col-md-offset-1">
                         <p:fieldset legend="Registrar Capitulo de Anime" toggleable="true" toggleSpeed="380" >
@@ -164,17 +164,17 @@ and open the template in the editor.
                             <div class="row">
                                 <div class="col-md-6">
                                     <p:outputLabel for="titCap" value="Titulo del Capitulo:" />
-                                    <p:inputText id="titCap" />
+                                    <p:inputText id="titCap" value="#{capAnimeBean.tituloCap}" />
                                     <p:message for="titCap" />
                                 </div>
                                 <div class="col-md-3">
                                     <p:outputLabel for="numcap" value="Numero de Capitulo: " />
-                                    <p:spinner id="numcap" />
+                                    <p:spinner id="numcap" value="#{capAnimeBean.numCapitulo}" />
                                     <p:message for="numcap" />
                                 </div>
                                 <div class="col-md-3">
                                     <p:outputLabel for="dura" value="Duración:" />
-                                    <p:spinner id="dura" />
+                                    <p:spinner id="dura" value="#{capAnimeBean.duracion}" />
                                     <p:message for="dura" />                                    
                                 </div>
                             </div>
@@ -182,27 +182,28 @@ and open the template in the editor.
                             <div class="row">
                                 <div class="col-md-8">
                                     <p:outputLabel value="Ruta:" />
-                                    <p:fileUpload required="true" id="ruta" />
+                                    <p:fileUpload required="true" id="ruta" value="#{capAnimeBean.rutaUp}" mode="simple" sizeLimit="1000000"  allowTypes="/(\.|\/)(gif|jpg|jpeg|png)$/" />
                                     <p:message for="ruta" />
                                 </div>
                                 <div class="col-md-4">
                                     <p:outputLabel for="fechaEs" value="Fecha de estreno:" />
-                                    <p:calendar id="fechaEs" />
+                                    <p:calendar id="fechaEs" value="#{capAnimeBean.fecha_ext}" />
                                     <p:message for="fechaEs" />
                                 </div>
                             </div>
                             <br />
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <p:outputLabel value="Descripción:" for="inpDesc" />
-                                    <p:inputTextarea id="inpDesc" />
+                                    <p:inputTextarea id="inpDesc" value="#{capAnimeBean.DEscipcion}" />
                                     <p:message for="inpDesc" />
                                 </div>
+                                
                             </div>
                             <br />
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p:commandButton value="Agregar Capitulo" />
+                                    <p:commandButton value="Agregar Capitulo" ajax="false" actionListener="#{capAnimeBean.regCapAnime}" />
                                 </div>
                             </div>
                         </p:fieldset>

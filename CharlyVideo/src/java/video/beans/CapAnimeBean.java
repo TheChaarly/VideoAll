@@ -6,8 +6,10 @@
 package video.beans;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -15,8 +17,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.hibernate.Session;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import video.dao.imp.AnimeDAOImp;
 import video.dao.imp.CapAnimeDAOImp;
@@ -41,9 +45,7 @@ public class CapAnimeBean {
     private AnimeDAOImp animeDAOImp; 
     private TempoAnimevDAOImp tempoAnimevDAOImp; 
     private TempoAnime tempoAnime;
-    private Integer idtemp;
     private Integer idanime;
-    private Integer idanime2;
     private String NombreTemporada;
     private Integer numTemporada;
     private Date fechaLanzamiento;
@@ -65,10 +67,58 @@ public class CapAnimeBean {
     private List<SelectItem> listselectitem2;
     private List<SelectItem> listselectitem3;
     
+    private Integer idtemp;
+    private Integer idanime2;
+    private String tituloCap;
+    private Integer NumCapitulo;
+    private Integer Duracion;
+    private String Ruta;
+    private UploadedFile RutaUp;
+    private File Ruta1;
+    private Date fecha_ext;
+    private Date fechaRg;
+    private String DEscipcion;
     
     public CapAnimeBean(){
         System.out.println("Ingresa en heresers");
         recCapAnime();
+    }
+    
+    public void regCapAnime(){
+        Calendar c3 = new GregorianCalendar();
+        System.out.println("1.-" + idtemp);
+        System.out.println("2.-" + tituloCap);
+        System.out.println("3.-" + NumCapitulo);
+        System.out.println("4.-" + Duracion);
+        System.out.println("6.-" + fecha_ext);
+        System.out.println("7.-" + c3.getTime());
+        System.out.println("8.-" + DEscipcion);
+        
+        System.out.println("5.-" + RutaUp.getFileName());
+        String dilename = FilenameUtils.getName(RutaUp.getFileName());
+        System.out.println("dile" + dilename);
+        
+    }
+    
+    public void handleFileUpload(FileUploadEvent event){
+        System.out.println("event");
+        
+        UploadedFile file = event.getFile();
+        try {
+            System.out.println("File" + file.getFileName());
+            FileOutputStream fos = new FileOutputStream(new File(file.getFileName()));
+            InputStream is = file.getInputstream();
+            int BUFFER_SIZE = 8192;
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int a;
+            while(true){
+                a = is.read(buffer);
+                if(a < 0) break;
+                fos.write(buffer, 0, a);
+                System.out.println("fos" + fos);
+            }
+        } catch (Exception e) {
+        }
     }
     
     public void cleanDatos(){
@@ -166,9 +216,78 @@ public class CapAnimeBean {
             }            
         }
     }
+
+    public UploadedFile getRutaUp() {
+        return RutaUp;
+    }
+
+    public void setRutaUp(UploadedFile RutaUp) {
+        this.RutaUp = RutaUp;
+    }
     
-    public void regCapAnime(){
-        
+
+    public String getTituloCap() {
+        return tituloCap;
+    }
+
+    public void setTituloCap(String tituloCap) {
+        this.tituloCap = tituloCap;
+    }
+
+    public Integer getNumCapitulo() {
+        return NumCapitulo;
+    }
+
+    public void setNumCapitulo(Integer NumCapitulo) {
+        this.NumCapitulo = NumCapitulo;
+    }
+
+    public Integer getDuracion() {
+        return Duracion;
+    }
+
+    public void setDuracion(Integer Duracion) {
+        this.Duracion = Duracion;
+    }
+
+    public String getRuta() {
+        return Ruta;
+    }
+
+    public void setRuta(String Ruta) {
+        this.Ruta = Ruta;
+    }
+
+    public File getRuta1() {
+        return Ruta1;
+    }
+
+    public void setRuta1(File Ruta1) {
+        this.Ruta1 = Ruta1;
+    }
+
+    public Date getFecha_ext() {
+        return fecha_ext;
+    }
+
+    public void setFecha_ext(Date fecha_ext) {
+        this.fecha_ext = fecha_ext;
+    }
+
+    public Date getFechaRg() {
+        return fechaRg;
+    }
+
+    public void setFechaRg(Date fechaRg) {
+        this.fechaRg = fechaRg;
+    }
+
+    public String getDEscipcion() {
+        return DEscipcion;
+    }
+
+    public void setDEscipcion(String DEscipcion) {
+        this.DEscipcion = DEscipcion;
     }
 
     public CapAnime getCapanime() {
