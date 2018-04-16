@@ -14,9 +14,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletContext;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.hibernate.Session;
@@ -85,42 +90,43 @@ public class CapAnimeBean {
     }
     
     public void regCapAnime(){
-        Calendar c3 = new GregorianCalendar();
-        System.out.println("1.-" + idtemp);
-        System.out.println("2.-" + tituloCap);
-        System.out.println("3.-" + NumCapitulo);
-        System.out.println("4.-" + Duracion);
-        System.out.println("6.-" + fecha_ext);
-        System.out.println("7.-" + c3.getTime());
-        System.out.println("8.-" + DEscipcion);
-        
-        System.out.println("5.-" + RutaUp.getFileName());
-        String dilename = FilenameUtils.getName(RutaUp.getFileName());
-        System.out.println("dile" + dilename);
-        
-    }
-    
-    public void handleFileUpload(FileUploadEvent event){
-        System.out.println("event");
-        
-        UploadedFile file = event.getFile();
+        Session session = null;           
         try {
-            System.out.println("File" + file.getFileName());
-            FileOutputStream fos = new FileOutputStream(new File(file.getFileName()));
-            InputStream is = file.getInputstream();
-            int BUFFER_SIZE = 8192;
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int a;
-            while(true){
-                a = is.read(buffer);
-                if(a < 0) break;
-                fos.write(buffer, 0, a);
-                System.out.println("fos" + fos);
-            }
-        } catch (Exception e) {
+            Calendar c3 = new GregorianCalendar();
+            System.out.println("1.-" + idtemp);
+            System.out.println("3.-" + NumCapitulo);
+            System.out.println("2.-" + tituloCap);
+            
+            System.out.println("8.-" + DEscipcion);
+            System.out.println("4.-" + Duracion);
+            System.out.println("6.-" + fecha_ext);
+            System.out.println("7.-" + c3.getTime());
+            byte[] video = IOUtils.toByteArray(RutaUp.getInputstream());
+            System.out.println("video" + video.length);
+            
+            session = HibernateUtil.getSessionFactory().openSession();
+            capanime = new CapAnime();
+            
+            capanime.setIdTemporada(idtemp);
+            capanime.setNCap(NumCapitulo);
+            capanime.setTitcap(tituloCap);
+            capanime.setDesc(DEscipcion);
+            capanime.setDura(Duracion);
+            capanime.setFechExt(fecha_ext);
+            capanime.setFech(Fecha);
+            capanime.setRuta(video);
+            
+            session.save(capanime);
+            session.flush();
+            session.close();
+        } catch (IOException ex) {
+            Logger.getLogger(CapAnimeBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+                
     }
     
+   
     public void cleanDatos(){
         idanime = null;
         NombreTemporada = null;
@@ -213,7 +219,9 @@ public class CapAnimeBean {
                 for(TempoAnimeDTO tempodto : listtitTempo){
                     listselectitem3.add(new SelectItem(tempodto.getIdTemporada(), tempodto.getNombreTemporada()));
                 }
-            }            
+            }else{
+            listselectitem3.clear();
+        }      
         }
     }
 
@@ -513,5 +521,6 @@ public class CapAnimeBean {
     public void setListtitTempo(List<TempoAnimeDTO> listtitTempo) {
         this.listtitTempo = listtitTempo;
     }
+
     
 }

@@ -61,7 +61,7 @@ public class CapAnime implements Serializable{
     @Column(name = "fecha")    
     private Date fech;
     @Column(name = "Ruta")    
-    private String ruta;
+    private byte[] ruta;
 
     public Date getFechExt() {
         return fechExt;
@@ -127,14 +127,14 @@ public class CapAnime implements Serializable{
         this.fech = fech;
     }
 
-    public String getRuta() {
+    public byte[] getRuta() {
         return ruta;
     }
 
-    public void setRuta(String ruta) {
+    public void setRuta(byte[] ruta) {
         this.ruta = ruta;
     }
-    
+        
     public int hashCode(){
         int hash = 0;
         hash += (idCap != null ? idCap.hashCode() : 0);

@@ -21,7 +21,7 @@ public class CapAnimeDTO {
     private Integer duracion;
     private Date fechaEx;
     private Date fecha;
-    private String ruta;
+    private byte[] ruta;
     private Integer numTemporada;
     private String NomTemporada;
 
@@ -80,15 +80,7 @@ public class CapAnimeDTO {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
-    public String getRuta() {
-        return ruta;
-    }
-
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
-    }
-
+                                                                                                                                                                                                                                                                        
     public Integer getNumTemporada() {
         return numTemporada;
     }
@@ -104,6 +96,21 @@ public class CapAnimeDTO {
     public void setNomTemporada(String NomTemporada) {
         this.NomTemporada = NomTemporada;
     }
-    
+
+    public Date getFechaEx() {
+        return fechaEx;
+    }
+
+    public void setFechaEx(Date fechaEx) {
+        this.fechaEx = fechaEx;
+    }    
+
+    public byte[] getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(byte[] ruta) {
+        this.ruta = ruta;
+    }
     
 }

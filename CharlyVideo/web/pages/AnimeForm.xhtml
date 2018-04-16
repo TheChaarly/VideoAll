@@ -137,7 +137,7 @@ and open the template in the editor.
             </h:form>
             <br/>
             <br/>
-            <h:form enctype="multipart/form-data">
+            <h:form id="multiform" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-11 col-md-offset-1">
                         <p:fieldset legend="Registrar Capitulo de Anime" toggleable="true" toggleSpeed="380" >
@@ -181,8 +181,10 @@ and open the template in the editor.
                             <br />
                             <div class="row">
                                 <div class="col-md-8">
+<!--                                    <input type="file" value="#{capAnimeBean.ruta1}" />-->
                                     <p:outputLabel value="Ruta:" />
-                                    <p:fileUpload required="true" id="ruta" value="#{capAnimeBean.rutaUp}" mode="simple" sizeLimit="1000000"  allowTypes="/(\.|\/)(gif|jpg|jpeg|png)$/" />
+                                    <p:fileUpload required="true" id="ruta" value="#{capAnimeBean.rutaUp}"
+                                                  mode="simple" sizeLimit="1000000"  allowTypes="/(\.|\/)(gif|jpg|jpeg|png)$/" />
                                     <p:message for="ruta" />
                                 </div>
                                 <div class="col-md-4">
@@ -203,7 +205,7 @@ and open the template in the editor.
                             <br />
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p:commandButton value="Agregar Capitulo" ajax="false" actionListener="#{capAnimeBean.regCapAnime}" />
+                                    <p:commandButton value="Agregar Capitulo" ajax="false"  actionListener="#{capAnimeBean.regCapAnime}" />
                                 </div>
                             </div>
                         </p:fieldset>
